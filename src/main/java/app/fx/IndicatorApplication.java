@@ -1,4 +1,4 @@
-package app.indicator;
+package app.fx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -4,6 +4,6 @@ module app.indicator {
     requires java.sql;
 
 
-    opens app.indicator to javafx.fxml;
-    exports app.indicator;
+    opens app.fx to javafx.fxml;
+    exports app.fx;
 }

@@ -1,4 +1,4 @@
-package app;
+package app.iterator;
 
 import javafx.scene.image.Image;
 

@@ -1,6 +1,6 @@
-package app.indicator;
+package app.fx;
 
-import app.ConcreteAggregate;
+import app.iterator.ConcreteAggregate;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
