@@ -10,8 +10,8 @@
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
    <children>
-      <Pane fx:id="paneIndicator" prefHeight="200.0" prefWidth="200.0" />
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <AnchorPane fx:id="paneIndicator" prefHeight="200.0" prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#play">
                <graphic>

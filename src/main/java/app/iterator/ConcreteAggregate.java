@@ -10,10 +10,21 @@ import java.util.Iterator;
 public class ConcreteAggregate extends Aggregate {
     private String name;
     private Image image;
+    private int size;
+    private ImageIterator imageIterator;
 
     @Override
     public Iterator getIterator() {
-        return new ImageIterator();
+        imageIterator = new ImageIterator();
+        return imageIterator;
+    }
+
+    public float getSize() {
+        return imageIterator.getSize();
+    }
+
+    public float getCorrect() {
+        return imageIterator.current;
     }
 
     public ConcreteAggregate(String name) {
@@ -25,7 +36,7 @@ public class ConcreteAggregate extends Aggregate {
         private int current = 0;
         ArrayList<String> image = new ArrayList<>();
 
-        private ImageIterator(){
+        private ImageIterator() {
             imgFromFile("C:\\Users\\nikit\\IdeaProjects\\Indicator\\src\\main\\resources\\image");
         }
 
@@ -46,6 +57,10 @@ public class ConcreteAggregate extends Aggregate {
             String filename =
                     Paths.get(image.get(iterator - 1)).toUri().toString();
             return new Image(filename);
+        }
+
+        protected int getSize() {
+            return image.size();
         }
 
         @Override

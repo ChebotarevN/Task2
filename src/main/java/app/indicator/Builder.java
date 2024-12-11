@@ -12,4 +12,6 @@ public interface Builder {
     public void addTitle(String name);
 
     public Indicator build();
+
+    public void setMark(float mark);
 }
