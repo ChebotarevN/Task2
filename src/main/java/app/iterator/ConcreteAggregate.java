@@ -10,10 +10,12 @@ import java.util.Iterator;
 public class ConcreteAggregate extends Aggregate {
     private String name;
     private ImageIterator imageIterator;
+    private String path = "src/main/resources/image";
 
     @Override
     public Iterator getIterator() {
         imageIterator = new ImageIterator();
+        imageIterator.setPath(path);
         return imageIterator;
     }
 
@@ -29,29 +31,37 @@ public class ConcreteAggregate extends Aggregate {
         this.name = name;
     }
 
+    public void setPath(String path) {
+        this.path = path;
+        imageIterator.setPath(path);
+    }
+
 
     private class ImageIterator implements Iterator {
         private int current = 0;
-        ArrayList<String> image = new ArrayList<>();
-        ArrayList<String> formatImage = new ArrayList<>();
+        private ArrayList<String> image = new ArrayList<>();
+        private ArrayList<String> formatImage = new ArrayList<>();
+        private String path;
 
         private ImageIterator() {
             formatImage.add(".jpg");
             formatImage.add(".png");
-            imgFromFile("C:\\Users\\nikit\\IdeaProjects\\Indicator\\src\\main\\resources\\image");
+            imgFromFile(path);
         }
 
         private void imgFromFile(String path) {
-            File f = new File(path);
-            if (f.isDirectory()) {
-                String[] fContents = f.list();
-                for (int i = 0; i < fContents.length; i++) {
-                    for (String item:formatImage) {
-                        if (fContents[i].contains(item))
-                            image.add(f.getPath() + "\\" + fContents[i]);
+            if (path != null && !path.isEmpty()) {
+                File f = new File(path);
+                if (f.isDirectory()) {
+                    String[] fContents = f.list();
+                    for (int i = 0; i < fContents.length; i++) {
+                        for (String item : formatImage) {
+                            if (fContents[i].contains(item))
+                                image.add(f.getPath() + "\\" + fContents[i]);
+                        }
+                        if (!fContents[i].contains("."))
+                            imgFromFile(f.getPath() + "\\" + fContents[i]);
                     }
-                    if (!fContents[i].contains("."))
-                        imgFromFile(f.getPath() + "\\" + fContents[i]);
                 }
             }
         }
@@ -64,6 +74,13 @@ public class ConcreteAggregate extends Aggregate {
 
         protected int getSize() {
             return image.size();
+        }
+
+        private void setPath(String path) {
+            current = 0;
+            image.clear();
+            this.path = path;
+            imgFromFile(path);
         }
 
         @Override

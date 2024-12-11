@@ -10,8 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.Iterator;
 
 public class IndicatorController {
@@ -82,6 +85,24 @@ public class IndicatorController {
         Indicator indicator = director.construct(new BuilderFirst(), sizeImage, correct);
         paneIndicator.getChildren().clear();
         indicator.show(paneIndicator);
+    }
+
+    @FXML
+    public void chooseFolder() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Выбрать папку");
+        File file = directoryChooser.showDialog(screen.getScene().getWindow());
+        if (file != null && !file.getPath().isEmpty()) {
+            concreteAggregate.setPath(file.getPath());
+            iterator = concreteAggregate.getIterator();
+            screen.setImage(null);
+            sizeImage = concreteAggregate.getSize();
+            correct = 0;
+            Indicator indicator = director.construct(new BuilderFirst(), sizeImage, correct);
+            paneIndicator.getChildren().clear();
+            indicator.show(paneIndicator);
+        }
+        stop();
     }
 
 

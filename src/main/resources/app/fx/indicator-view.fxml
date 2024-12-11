@@ -52,6 +52,15 @@
                      </image></ImageView>
                </graphic>
             </Button>
+            <Button layoutX="274.0" layoutY="10.0" mnemonicParsing="false" onAction="#chooseFolder">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/player/folder.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
