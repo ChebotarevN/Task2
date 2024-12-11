@@ -5,7 +5,7 @@ public class Director {
 
         builder = new BuilderFirst();
 
-        builder.addTitle("Норма");
+        builder.addTitle("Индикатор слайдов");
 
         builder.lineMark(String.format("%.1f", metka));
         builder.setMark(metka);

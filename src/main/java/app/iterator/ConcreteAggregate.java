@@ -9,8 +9,6 @@ import java.util.Iterator;
 
 public class ConcreteAggregate extends Aggregate {
     private String name;
-    private Image image;
-    private int size;
     private ImageIterator imageIterator;
 
     @Override
@@ -35,8 +33,11 @@ public class ConcreteAggregate extends Aggregate {
     private class ImageIterator implements Iterator {
         private int current = 0;
         ArrayList<String> image = new ArrayList<>();
+        ArrayList<String> formatImage = new ArrayList<>();
 
         private ImageIterator() {
+            formatImage.add(".jpg");
+            formatImage.add(".png");
             imgFromFile("C:\\Users\\nikit\\IdeaProjects\\Indicator\\src\\main\\resources\\image");
         }
 
@@ -45,8 +46,10 @@ public class ConcreteAggregate extends Aggregate {
             if (f.isDirectory()) {
                 String[] fContents = f.list();
                 for (int i = 0; i < fContents.length; i++) {
-                    if (fContents[i].contains(".jpg"))
-                        image.add(f.getPath() + "\\" + fContents[i]);
+                    for (String item:formatImage) {
+                        if (fContents[i].contains(item))
+                            image.add(f.getPath() + "\\" + fContents[i]);
+                    }
                     if (!fContents[i].contains("."))
                         imgFromFile(f.getPath() + "\\" + fContents[i]);
                 }

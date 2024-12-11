@@ -22,14 +22,14 @@ public class IndicatorController {
     Pane paneIndicator;
     Director director = new Director();
 
-    public ConcreteAggregate concreteAggregate = new ConcreteAggregate("img");
+    public ConcreteAggregate concreteAggregate = new ConcreteAggregate("iterator");
     public Iterator iterator = concreteAggregate.getIterator();
     public Timeline time = new Timeline();
     private float sizeImage, correct;
 
     public void initialize() {
         time.setCycleCount(Timeline.INDEFINITE);
-        time.getKeyFrames().add(new KeyFrame(Duration.seconds(1), _ -> {
+        time.getKeyFrames().add(new KeyFrame(Duration.seconds(2), _ -> {
             if (iterator.hasNext()) {
                 screen.setImage((Image)
                         iterator.next());
